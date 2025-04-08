@@ -3,7 +3,7 @@ import "../assets/style.css";
 import "../assets/bootstrap.min.css";
 
 const Header = () => {
-    const logout = async (e) => {
+    const logout = async (e) => {    
     e.preventDefault();
     let logout_url = window.location.origin+"/djangoapp/logout";
     const res = await fetch(logout_url, {
@@ -30,10 +30,12 @@ let home_page_items =  <div></div>
 let curr_user = sessionStorage.getItem('username')
 
 //If the user is logged in, show the username and logout option on home page
+//<a className="nav_item" href="/djangoapp/logout" onClick={logout}>Logout</a>
+    
 if ( curr_user !== null &&  curr_user !== "") {
     home_page_items = <div className="input_panel">
       <text className='username'>{sessionStorage.getItem("username")}</text>
-    <a className="nav_item" href="/djangoapp/logout" onClick={logout}>Logout</a>
+      <a className="nav_item" href="/djangoapp/logout" onClick={logout}>Logout</a>
   </div>
 }
     return (

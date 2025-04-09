@@ -1,0 +1,10 @@
+{
+  "undef": false,
+  "unused": false,
+  "esversion": 6,
+  "asi": true,
+  "globals": {},
+  "predef": [],
+  "devel": true,
+  "node": true
+}

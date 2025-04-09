@@ -20,7 +20,7 @@ def login_user(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         login(request, user)
-        return JsonResponse({"userName": username, 
+        return JsonResponse({"userName": username,
                              "status": "Authenticated"})
     return JsonResponse({"userName": username})
 

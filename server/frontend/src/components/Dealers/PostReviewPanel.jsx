@@ -5,7 +5,8 @@ import "../assets/style.css";
 import Header from '../Header/Header';
 
 
-const PostReview = () => {
+const PostReviewPanel = () => {
+
   const [dealer, setDealer] = useState({});
   const [review, setReview] = useState("");
   const [model, setModel] = useState();
@@ -54,14 +55,15 @@ const PostReview = () => {
           "Content-Type": "application/json",
       },
       body: jsoninput,
-  });
+    });
 
-  const json = await res.json();
-  if (json.status === 200) {
-      window.location.href = window.location.origin+"/dealer/"+id;
+    const json = await res.json();
+    if (json.status === 200) {
+        window.location.href = window.location.origin+"/dealer/"+id;
+    }
+
   }
 
-  }
   const get_dealer = async ()=>{
     const res = await fetch(dealer_url, {
       method: "GET"
@@ -70,12 +72,14 @@ const PostReview = () => {
     
     if(retobj.status === 200) {
       let dealerobjs = Array.from(retobj.dealer)
-      if(dealerobjs.length > 0)
+      if(dealerobjs.length > 0){
         setDealer(dealerobjs[0])
+      }  
     }
   }
 
   const get_cars = async ()=>{
+    //alert(carmodels_url);
     const res = await fetch(carmodels_url, {
       method: "GET"
     });
@@ -84,18 +88,20 @@ const PostReview = () => {
     let carmodelsarr = Array.from(retobj.CarModels)
     setCarmodels(carmodelsarr)
   }
+
   useEffect(() => {
+    //alert(dealer_url);
+
     get_dealer();
     get_cars();
   },[]);
-
 
   return (
     <div>
       <Header/>
       <div  style={{margin:"5%"}}>
       <h1 style={{color:"darkblue"}}>{dealer.full_name}</h1>
-      <textarea id='review' cols='50' rows='7' onChange={(e) => setReview(e.target.value)}></textarea>
+      <textarea id='review' cols='80' rows='7' onChange={(e) => setReview(e.target.value)}></textarea>
       <div className='input_field'>
       Purchase Date <input type="date" onChange={(e) => setDate(e.target.value)}/>
       </div>
@@ -118,6 +124,7 @@ const PostReview = () => {
       </div>
     </div>
     </div>
-  )
+  )//  </div>
+  //)
 }
-export default PostReview
+export default PostReviewPanel

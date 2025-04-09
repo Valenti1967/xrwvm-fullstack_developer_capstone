@@ -1,7 +1,8 @@
 {
+  "sub": true,
   "undef": false,
   "unused": false,
-  "esversion": 6,
+  "esversion": 8,
   "asi": true,
   "globals": {},
   "predef": [],

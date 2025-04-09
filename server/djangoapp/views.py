@@ -41,7 +41,8 @@ def registration(request):
 
     try:
         User.objects.get(username=username)
-        return JsonResponse({"userName": username, "error": "Already Registered"})
+        return JsonResponse({"userName": username,
+                             "error": "Already Registered"})
     except User.DoesNotExist:
         logger.debug(f"{username} is a new user")
         user = User.objects.create_user(
@@ -52,7 +53,8 @@ def registration(request):
             email=email
         )
         login(request, user)
-        return JsonResponse({"userName": username, "status": "Authenticated"})
+        return JsonResponse({"userName": username,
+                             "status": "Authenticated"})
 
 
 def get_cars(request):
